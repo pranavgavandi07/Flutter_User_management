@@ -21,17 +21,20 @@ class UserController extends GetxController {
         ),
       );
 
-     Get.snackbar('Success', 'User added successfully');
+      Get.snackbar('Success', 'User added successfully');
     } catch (e) {
-    Get.snackbar(
-        'Error',
-        'Failed to add user. Please try again.',
-      );
+      Get.snackbar('Error', 'Failed to add user. Please try again.');
     } finally {
       isLoading.value = false;
     }
   }
-  Future<void> updateUser(String docId, String name, String email, String address) async {
+
+  Future<void> updateUser(
+    String docId,
+    String name,
+    String email,
+    String address,
+  ) async {
     try {
       isLoading.value = true;
 
@@ -42,16 +45,12 @@ class UserController extends GetxController {
       });
       Get.back();
       Get.snackbar('Success', 'User updated successfully');
-
     } catch (e) {
       Get.snackbar('Error', 'Failed to update user: $e');
     } finally {
       isLoading.value = false;
     }
   }
-
-
-
 
   Future<void> deleteUser(String id) async {
     try {
