@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "276108478793",
+    "project_id": "login-aec47",
+    "storage_bucket": "login-aec47.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:276108478793:android:a985533fb6f9f65f51f298",
+        "android_client_info": {
+          "package_name": "com.example.project_login"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwevyIAavxcHYtlQCMD2cq8V3LPkHDM4Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
