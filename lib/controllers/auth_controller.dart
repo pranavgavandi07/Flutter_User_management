@@ -14,10 +14,9 @@ class AuthController extends GetxController {
   var isLoading = false.obs;
   User? currentUser;
   RxBool isAdmin = false.obs;
-  // bool get isAdmin => role.value == 'admin';
+  // bool get isAdmin => role.value == 'admin'
   // bool get isUser => role.value == 'user';
   //
-
 
   void signup(String email, String password, String role) async {
     try {
@@ -25,11 +24,14 @@ class AuthController extends GetxController {
       final user = await _authService.signup(email, password);
       if (user != null) {
         currentUser = user;
-        await FirebaseFirestore.instance.collection('users_roles').doc(user.uid).set({
-          'email': email,
-          'role': role,
-          'createdAt': FieldValue.serverTimestamp(),
-        });
+        await FirebaseFirestore.instance
+            .collection('users_roles')
+            .doc(user.uid)
+            .set({
+              'email': email,
+              'role': role,
+              'createdAt': FieldValue.serverTimestamp(),
+            });
         // await  fetchUserRole(email);
         await saveUserToPrefs();
         Get.offAllNamed(AppRoutes.dashboard);
@@ -48,7 +50,7 @@ class AuthController extends GetxController {
       if (user != null) {
         currentUser = user;
         // Fetch role from users_roles collection
-      // await  fetchUserRole(email);
+        // await  fetchUserRole(email);
         await saveUserToPrefs();
         Get.offAllNamed(AppRoutes.dashboard);
       }
@@ -59,12 +61,10 @@ class AuthController extends GetxController {
     }
   }
 
-
   Future<void> saveUserToPrefs() async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool(USER_LOGGED_IN_KEY, true); // just a login flag
   }
-
 
   /// Load user session from SharedPreferences
   Future<void> loadUserFromPrefs() async {
@@ -76,7 +76,6 @@ class AuthController extends GetxController {
       currentUser = _authService.currentUser;
     }
   }
-
 
   Future<void> fetchUserRole(String email) async {
     final query = await FirebaseFirestore.instance
@@ -92,8 +91,6 @@ class AuthController extends GetxController {
     }
   }
 
-
-
   /// Logout method
   Future<void> logout() async {
     await _authService.logout();
@@ -102,7 +99,6 @@ class AuthController extends GetxController {
     await prefs.remove(USER_LOGGED_IN_KEY);
     Get.offAllNamed(AppRoutes.login);
   }
-
 
   /// Check if user is logged in
   bool get isLoggedIn => currentUser != null;
